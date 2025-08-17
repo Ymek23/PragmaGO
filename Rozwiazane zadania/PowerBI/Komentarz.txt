@@ -1,0 +1,11 @@
+Do wizualizacji zmiany kursów walut w czasie został wykorzystany wykres liniowy. Jest to najlepszy typ wykresu w tym przypadku, ponieważ:
+
+1. Czas na osi X – wykres liniowy bardzo dobrze przedstawia dane szeregów czasowych. Dzięki temu można łatwo prześledzić, jak kursy walut zmieniały się w kolejnych dniach, miesiącach czy latach.
+
+2. Płynność zmian – linia łącząca punkty pokazuje kierunek i dynamikę zmian kursu, co pozwala zauważyć trendy wzrostowe i spadkowe.
+
+3. Porównania – w przypadku dodania więcej niż jednej waluty na tym samym wykresie liniowym można bezpośrednio porównywać ich przebieg w czasie.
+
+4. Średnia krocząca – dodanie do wykresu miary średniej kroczącej (30-dniowej) pozwala wygładzić krótkoterminowe wahania i jeszcze lepiej pokazać długoterminowy trend. Linia główna (kurs rzeczywisty) pokazuje codzienne wahania, a linia średniej kroczącej – ogólny kierunek i pomaga niwelować tzw. "Szumy".
+
+5. Czytelność – wykres liniowy jest prosty i intuicyjny dla odbiorcy. Ułatwia szybkie zrozumienie informacji, nawet dla osób, które nie zajmują się analizą danych na co dzień.

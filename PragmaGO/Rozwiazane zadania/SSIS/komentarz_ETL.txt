@@ -1,0 +1,17 @@
+W ramach zadania ETL zostało wykorzystane rozszerzenie do SSIS "ZappySys" aby móc łatwiej 
+obsłużyć dostęp do plików JSON z REST API. W pierwszym kroku projek sprawdza czy w bazie danych
+"AdventureWorksDW2019" istnieje już tabela z danymi. Jeżeli tak to wyciągana jest informacja 
+o ostatniej dacie publikowanego kursu waluty (skrypt "Check Date").  Jeśli nie mamy tabeli, to
+pierwszy skrypt "CREATE_dbo_KursyWalut".
+To pozwoli nam uniknąć problemów związanych z brakiem utworzenia tabeli na poziomie bazy danych.
+
+Następnie w DataFlow dla każdej Waluty z tabeli A utworzone są "ZS JSON Source (REST API or File).
+Ponieważ REST API Narodowego Banku Polskiego nie daje możliwość wyciągnięcia wszystkich danych,
+tylko z zakresy 90 dni, data flow jest obsłużony pętlą i zmiennymi aby wyciągane zostały dane co 90 dni
+aż do dnia dzisiejszego. W następnym kroku za pomocą "Derived colum" dla każdej waluty dodaję datę 
+pobrania danych "DownloadDate" oraz dla wymaganych kolumn aktualizuję nazwę i typ danych.
+Ostatnim krokiem jest połączenie wszystkich zwróconych wyników za pomocą UnionAll i wrzucenie danych 
+finalnych do tabeli dbo.Kursywalut. 
+Zdecydowałem się na użycie zmiennych do zapisania dat i linków url ponieważ chciałem aby paczka dynamicznie
+pobierała dane co 90 dni z REST API.
+ 

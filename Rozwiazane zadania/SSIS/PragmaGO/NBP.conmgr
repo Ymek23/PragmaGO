@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="NBP"
+  DTS:DTSID="{C235E9E4-FDCD-43B6-BC9F-9510DCC068F0}"
+  DTS:CreationName="ZS-HTTP">
+  <DTS:ObjectData>
+    <ConnectionManager
+      ConnectionString="Url=https://api.nbp.pl/api/exchangerates/tables/A/?format=json;CredentialType=Notset;UserName=;Timeout=100000;SoapWssPasswordType=Notset;JwtCustomClaims=;RetainCookies=False;SslVersion=Default;RetryMode=None;RetryCountMax=3;RetryWaitTimeMs=2000;RetryMultiplyWaitTime=False;RetryMessageList=;RetryStatusCodeList=;AuthScheme=Bearer;TokenAuthHeader=;TokenFunction=;TokenUrl=;TokenRequestData=;TokenRequestHeaders=Accept:*/*||Cache-Control:no-cache;TokenRequestMethod=;TokenRequestContentType=Default;TokenRequestIsMultiPart=False;TokenResponseContentFilter=;TokenResponseValueExtractMode=Body;TokenResponseCookie=;TokenResponseHeader=;TokenResponseContentType=None;TokenExpirationTimeInSeconds=3600;EnableRequestHashing=False;HashAlgorithm=sha256;HashSignatureFormat=;HashSignatureFormatForLogin=;ExtraHeaders=;ExtraHeadersForLogin=;HashTimestampFormat=;HashTreatSecretAsNonBase64=False;HashSignWithApiKey=False;HashDoNotSign=False;ConnectionStringFile=;RetainSameConnection=False;UseClientCertificate=False;CertificatePath=;CertificateStorageType=CurrentUser;CertificateStoreName=My;CertificateThumbprint=;UseProxy=False;ProxyUrl=;UseProxyCreds=False;ProxyUserName=;DoNotUseDefaultProxy=False;MetaMethod=;MetaUrl=;MetaBody=;MetaHeaders=;MetaTemplate=;MetaFields=;MetaFilters=;MetaContentType=None"
+      ConnectByProxy="False" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

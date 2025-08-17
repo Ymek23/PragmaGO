@@ -1,0 +1,75 @@
+	SQL
+	Baza danych: 
+		AdventureWorksDW2019 (https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms)
+	Język: 
+		SQL Server (T-SQL)
+	Zadanie: 
+		Na podstawie zapytań do bazy danych odpowiedz na poniższe pytania. 
+			1. Ilu unikalnych klientów znajduje się w bazie danych?
+			2. Wypisz klientów z Niemiec, których imię zawiera literę „a”
+			3. Ilu klientów pochodzi z każdego kraju? Posortuj malejąco po liczbie klientów.
+			4. Wypisz produkty, które nigdy nie zostały zamówione.
+			5. Który klient wydał najwięcej pieniędzy w roku 2013?
+			6. Zoptymalizuj poniższe zapytanie pod kątem wydajności i czytelności:
+			SELECT 
+				c.CustomerKey,
+				c.FirstName,
+				c.LastName,
+				COUNT(DISTINCT s.SalesOrderNumber) AS OrderCount,
+				SUM(s.SalesAmount) AS TotalSpent
+			FROM DimCustomer c
+			JOIN FactInternetSales s ON s.CustomerKey = c.CustomerKey
+			WHERE s.ProductKey IN (
+				SELECT p.ProductKey
+				FROM DimProduct p
+				WHERE p.EnglishProductName LIKE '%Mountain%'
+				  AND p.Color IN ('Red', 'Silver', 'Black')
+			)
+			AND s.OrderDateKey IN (
+				SELECT d.DateKey
+				FROM DimDate d
+				WHERE d.CalendarYear BETWEEN 2012 AND 2014
+				  AND d.DayNumberOfWeek IN (1, 7) -- Weekends
+			)
+			GROUP BY c.CustomerKey, c.FirstName, c.LastName
+			HAVING SUM(s.SalesAmount) > 5000
+			ORDER BY TotalSpent DESC;
+	Rozwiązanie: 
+		Zapytania w formie pliku .sql z komentarzem do zadania 6 oraz zrzutów wyników 
+	
+	ETL
+	Źródło danych: 
+		https://api.nbp.pl 
+	Technologia: 
+		Proces musi być wykonany w SSIS.
+	Miejsce docelowe: 
+		Tabela w bazie danych SQL server
+	Zadanie:
+		Zaprojektuj pakiet SSIS, który:
+			-Automatycznie pobierze kursy walut (EUR, USD, GBP) z api NBP.
+			-Przefiltruje dane według warunku (Dane od 01.01.2020 do dziś).
+			-Przekształci dane (np. zmiana nazw kolumn, konwersja typów danych, dodanie kolumny daty pobrania).
+			-Załaduje dane do bazy danych SQL Server (do tabeli KursyWalut).
+		Pakiet bedzie uruchamiany codziennie i ma pobierać kursy walut za ostatni dzień. 
+		W przypadku pierwszego uruchomienia pakietu pakiet ma zapełnić tabelę datami od 01.01.2020 do dziś.
+	Rozwiązanie: 
+		Link do publicznego repozytorium np.github z zawartością pakietu SSIS (bez kompilatów) 
+		+ definicja tabeli docelowej (CREATE TABLE)
+		+ 2 zrzuty ekranu z wykonania paczki w Visual Studio (zakładka Execution Result i zakładka Data Flow)
+		+ kilkuzdaniowy opis paczki - jakie rozwiązanie wybrano i dlaczego
+		
+	Raporty
+	Źródło danych: 
+		SQL server
+	Technologia: 
+		Power BI
+	Zadanie:
+		Na podstawie tabeli uzyskanej w zadaniu ETL przygotuj raport Power BI ukazujący zmianę kursów walut w czasie.
+		Model danych ma zawierać tabelę kursów walut oraz tabelę dat połączonych relacją.
+		Wizualizacja ma zawierać wykres ukazujący zmianę kursów w czasie oraz filtry/slicery.
+		Na wizualizację nanieś również średnią kroczącą w okresie 1 miesiąca. 
+		Wyliczenie średniej kroczącej zrealizuj za pomocą miary DAX.
+		Zaproponuj typ wykresu i uzasadnij jego wybór.
+	Rozwiązanie: 
+		Plik .pbix z komentarzem w pliku .txt. W przypadku niewykonania zadania ETL 
+		pobierz dane bezpośrednio z api poprzez PowerBI lub połącz się z plikami excel pobranymi ze strony nbp.
