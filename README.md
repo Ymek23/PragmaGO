@@ -1,0 +1,2 @@
+# PragmaGO
+Wykonane zadania rekrutacyjne
